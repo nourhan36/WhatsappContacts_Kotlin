@@ -22,9 +22,18 @@ class ContactsRecyclerAdapter(val items:List<Contact>) : RecyclerView.Adapter<Co
             holder.image.setImageResource(contact?.imageId ?: R.drawable.profile)
             holder.status.text = contact?.status
         }
-
+        if(onItemClickListener!=null) {
+            holder.itemView.setOnClickListener {
+                onItemClickListener?.onItemClick(position, items!![position])
+            }
+        }
     }
 
+    var onItemClickListener : OnItemClickListener?=null
+
+    fun interface OnItemClickListener{
+        fun onItemClick(position: Int , item:Contact)
+    }
     class ViewHolder(itemView : View): RecyclerView.ViewHolder(itemView) {
         //val image = itemView.findViewById<ImageView>(R.id.contact_image);  Both correct
         val image: ImageView = itemView.findViewById(R.id.contact_image);

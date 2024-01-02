@@ -19,6 +19,10 @@ class WhatsAppContacts : AppCompatActivity() {
         createContactsList()
         adapter = ContactsRecyclerAdapter(contactsLit)
         binding.rvContacts.adapter = adapter
+        adapter.onItemClickListener =
+            ContactsRecyclerAdapter.OnItemClickListener { position, item ->
+
+            }
     }
 
     private fun createContactsList() {
